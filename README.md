@@ -29,9 +29,11 @@ The repository is organized by chapter, following the structure of the book.
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Technologies and Tools Used
 
 * **Python:** 3.14.2
+* **Visual Studio Code**
+* **Git**
 
 ---
 
