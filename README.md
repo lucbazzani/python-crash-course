@@ -14,7 +14,7 @@ The main goals of this repository are:
 * **Implementations:** To store clean, working versions of solutions to the programming challenges and exercises.
 * **Reference:** To serve as a quick reference for Python syntax and techniques covered in the book.
 
-P.S.: You won't find all of the exercises proposed by the author, but rather those I considered most relevant or challenging.
+P.S.: You won't find all of the "Try It Yourself" exercises proposed by the author, but rather those I considered most relevant or challenging.
 
 ---
 

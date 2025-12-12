@@ -2,6 +2,7 @@
 # who would you invite? Make a list that includes at least three people you’d
 # like to invite to dinner. Then use your list to print a message to each person,
 # inviting them to dinner.
+print('### EXERCISE 3-4 ###')
 guests = ['alan turing','linus torvalds','geni nuñez','yoko ono']
 print(f'Hello, {guests[0].title()}! Come to dinner with me! :)')
 print(f'Hello, {guests[1].title()}! Come to dinner with me! :)')
@@ -17,10 +18,9 @@ print(f'Hello, {guests[3].title()}! Come to dinner with me! :)')
 # name of the new person you are inviting.
 # Print a second set of invitation messages, one for each person who is still in
 # your list.
-print()
+print('\n### EXERCISE 3-5 ###')
 popped_guest = guests.pop(0)
-print(f"{popped_guest.title()} can't come to dinner :(")
-print()
+print(f"{popped_guest.title()} can't come to dinner :(\n")
 
 guests.insert(0, 'kurt cobain')
 print(f'Hello, {guests[0].title()}! Come to dinner with me! :)')
@@ -36,7 +36,7 @@ print(f'Hello, {guests[3].title()}! Come to dinner with me! :)')
 # Use insert() to add one new guest to the middle of your list.
 # Use append() to add one new guest to the end of your list.
 # Print a new set of invitation messages, one for each person in your list.
-print()
+print('\n### EXERCISE 3-6 ###')
 print("Hey, everyone! Guess what?! I've found a bigger table!")
 
 guests.insert(0, 'rayssa leal')
@@ -64,18 +64,17 @@ print(f'Hello, {guests[6].title()}! Come to dinner with me! :)')
 # Use del to remove the last two names from your list, so you have an empty
 # list. Print your list to make sure you actually have an empty list at the end of
 # your program
-print()
+print('\n### EXERCISE 3-7 ###')
 print("Hey, everyone! I have bad news :(")
-print("I can only invite two people for dinner")
-print()
+print("I can only invite two people for dinner\n")
+
 print(f"Hey, {guests.pop().title()}! I'm sorry, but I can't invite you to dinner anymore")
 print(f"Hey, {guests.pop().title()}! I'm sorry, but I can't invite you to dinner anymore")
 print(f"Hey, {guests.pop().title()}! I'm sorry, but I can't invite you to dinner anymore")
 print(f"Hey, {guests.pop().title()}! I'm sorry, but I can't invite you to dinner anymore")
 print(f"Hey, {guests.pop().title()}! I'm sorry, but I can't invite you to dinner anymore")
 
-print()
-print(f"Hey, {guests[0].title()}! You're still invited to dinner")
+print(f"\nHey, {guests[0].title()}! You're still invited to dinner")
 print(f"Hey, {guests[1].title()}! You're still invited to dinner")
 
 del guests[0]
