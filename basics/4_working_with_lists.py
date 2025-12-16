@@ -42,10 +42,10 @@ for number in range(1, 21):
 # 4-4. One Million: Make a list of the numbers from one to one million, and
 # then use a for loop to print the numbers. (If the output is taking too long,
 # stop it by pressing CTRL-C or by closing the output window.)
-# print('\n### EXERCISE 4-4 ###')
-# numbers = list(range(1, 1000001))
-# for i in numbers:
-#     print(i)
+print('\n### EXERCISE 4-4 ###')
+numbers = list(range(1, 1000001))
+for i in numbers:
+    print(i)
 
 # 4-5. Summing a Million: Make a list of the numbers from one to one
 # million, and then use min() and max() to make sure your list actually starts at
