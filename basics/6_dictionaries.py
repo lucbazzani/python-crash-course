@@ -51,11 +51,11 @@ glossary = {
     'evaluate': 'to judge or calculate the quality, importance, amount, or value of something'
 }
 
-print(f'STATEMENT:\n    {glossary.get('statement')}.')
-print(f'\nFORTH:\n    {glossary.get('forth')}.')
-print(f'\nCOLON:\n    {glossary.get('colon')}.')
-print(f'\nPOLL:\n    {glossary.get('poll')}.')
-print(f'\nEVALUATE:\n    {glossary.get('evaluate')}.')
+print(f'STATEMENT:\n\t{glossary.get('statement')}.')
+print(f'\nFORTH:\n\t{glossary.get('forth')}.')
+print(f'\nCOLON:\n\t{glossary.get('colon')}.')
+print(f'\nPOLL:\n\t{glossary.get('poll')}.')
+print(f'\nEVALUATE:\n\t{glossary.get('evaluate')}.')
 
 # 6-4. Glossary 2: Now that you know how to loop through a dictionary,
 # clean up the code from Exercise 6-3 (page 99) by replacing your series of
@@ -73,7 +73,7 @@ glossary = {
 }
 
 for k, v in glossary.items():
-    print(f'{k.upper()}:\n    {v}.\n')
+    print(f'{k.upper()}:\n\t{v}.\n')
 
 glossary['comma'] = 'the symbol , used in writing to separate parts of a sentence showing a slight pause, or to separate the single things in a list'
 glossary['topping'] = 'a substance, especially a sauce or pieces of food, that is put on top of other food to give extra flavour and to make it look attractive'
@@ -82,7 +82,7 @@ glossary['ensure'] = 'to make something certain to happen'
 glossary['likewise'] = 'in the same way'
 
 for k, v in glossary.items():
-    print(f'{k.upper()}:\n    {v}.\n')
+    print(f'{k.upper()}:\n\t{v}.\n')
 
 # 6-5. Rivers: Make a dictionary containing three major rivers and the
 # country each river runs through. One key-value pair might be 'nile': 'egypt'.
@@ -133,3 +133,54 @@ for person in names:
         print(f'Thank you, {person.title()} for responding the poll!')
     else:
         print(f'{person.title()}, please take the poll.')
+
+# 6-7. People: Start with the program you wrote for Exercise 6-1 (page 98).
+# Make two new dictionaries representing different people, and store all three
+# dictionaries in a list called people. Loop through your list of people. As you
+# loop through the list, print everything you know about each person.
+print('\n### EXERCISE 6-7 ###')
+person_1 = {
+    'first_name': 'ester',
+    'last_name': 'bazzani',
+    'age': 23,
+    'city': 'guarulhos - sp'
+}
+person_2 = {
+    'first_name': 'raí',
+    'last_name': 'bazzani',
+    'age': 0.25,
+    'city': 'guarulhos - sp'
+}
+person_3 = {
+    'first_name': 'henrique',
+    'last_name': 'topfstedt',
+    'age': 29,
+    'city': 'katowice - poland'
+}
+people = [person_1, person_2, person_3]
+
+for person in people:
+    full_name = person.get('first_name') + ' ' + person.get('last_name')
+    age = person.get('age')
+    city = person.get('city')
+    print(f'\n{full_name.title()} is {age} years old and lives in {city.title()}.')
+
+# 6-10. Favorite Numbers: Modify your program from Exercise 6-2 (page
+# 98) so each person can have more than one favorite number. Then print
+# each person’s name along with their favorite numbers.
+print('\n### EXERCISE 6-10 ###')
+favorite_numbers = {
+    'lucas': [3],
+    'ester': [9, 10],
+    'gon': [1],
+    'kite': [7, 13],
+    'meruem': [1, 3]
+}
+for name, numbers in favorite_numbers.items():
+    if len(numbers) == 1:
+        print(f'\nThe {name.title()}\'s favorite number is {numbers[0]}')
+    else:
+        print(f"\n{name.title()}'s favorite numbers are:") 
+        
+        for number in numbers: 
+            print(f"\t{number}")
