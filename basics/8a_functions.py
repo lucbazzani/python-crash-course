@@ -126,3 +126,70 @@ while True:
  
     album = make_album(artist_name=band_name, album_title=album_title) 
     print(f"\nHere is your album!\n{album}")
+
+# 8-9. Messages: Make a list containing a series of short text messages. Pass
+# the list to a function called show_messages(), which prints each text message.
+print('\n### EXERCISE 8-9 ###')
+def show_messages(messages):
+    for message in messages:
+        print(message)
+
+messages = [
+    'Naruto can be a little harsh sometimes.',
+    'It\'s easy for you, isn\'t it, Killua?',
+    'You may be big, but you\'re not two, I may be small, but I\'m not half!'
+]
+show_messages(messages)
+
+# 8-10. Sending Messages: Start with a copy of your program from Exercise
+# 8-9. Write a function called send_messages() that prints each text message and
+# moves each message to a new list called sent_messages as it’s printed. After
+# calling the function, print both of your lists to make sure the messages were
+# moved correctly.
+print('\n### EXERCISE 8-10 ###')
+def show_messages(messages):
+    for message in messages:
+        print(message)
+
+def send_messages(messages, sent_messages):
+    show_messages(messages)
+    while messages:
+        current_message = messages.pop()
+        sent_messages.append(current_message)
+
+messages = [
+    'Naruto can be a little harsh sometimes.',
+    'It\'s easy for you, isn\'t it, Killua?',
+    'You may be big, but you\'re not two, I may be small, but I\'m not half!'
+]
+
+sent_messages = []
+send_messages(messages, sent_messages)
+print(f'\nmessages: {messages}')
+print(f'\nsent_messages: {sent_messages}')
+
+# 8-11. Archived Messages: Start with your work from Exercise 8-10. Call
+# the function send_messages() with a copy of the list of messages. After calling
+# the function, print both of your lists to show that the original list has
+# retained its messages.
+print('\n### EXERCISE 8-11 ###')
+def show_messages(messages):
+    for message in messages:
+        print(message)
+
+def send_messages(messages, sent_messages):
+    show_messages(messages)
+    while messages:
+        current_message = messages.pop()
+        sent_messages.append(current_message)
+
+messages = [
+    'Naruto can be a little harsh sometimes.',
+    'It\'s easy for you, isn\'t it, Killua?',
+    'You may be big, but you\'re not two, I may be small, but I\'m not half!'
+]
+
+sent_messages = []
+send_messages(messages[:], sent_messages)
+print(f'\nmessages: {messages}')
+print(f'\nsent_messages: {sent_messages}')
