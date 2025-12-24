@@ -5,6 +5,7 @@
 # different number of arguments each time.
 print('### EXERCISE 8-12 ###')
 def make_sandwich(*items): 
+    """Summarize the sandwich being ordered."""
     print("\nMaking a sandwich with the following items:") 
     for item in items: 
         print(f"- {item}") 
@@ -18,6 +19,7 @@ make_sandwich('cream cheese', 'olive')
 # names and three other key-value pairs that describe you.
 print('\n### EXERCISE 8-13 ###')
 def build_profile(first, last, **user_info):
+    """Builds a user profile dictionary."""
     user_info['first_name'] = first 
     user_info['last_name'] = last 
     return user_info 
@@ -40,6 +42,7 @@ print(my_profile)
 # stored correctly
 print('\n### EXERCISE 8-14 ###')
 def make_car(manufacturer, model, **car_info):
+    """Creates a dictionary representing a car."""
     car_info['manufacturer'] = manufacturer
     car_info['model'] = model
     return car_info

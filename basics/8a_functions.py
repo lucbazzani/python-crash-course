@@ -3,6 +3,7 @@
 # the function, and make sure the message displays correctly.
 print('### EXERCISE 8-1 ###')
 def display_message():
+    """Prints a message about what is being learned in the chapter."""
     print('Hi everyone! In this chapter 8 of Python Crash Course, I\'m learning Functions!')
 
 display_message()
@@ -13,6 +14,7 @@ display_message()
 # include a book title as an argument in the function call
 print('\n### EXERCISE 8-2 ###')
 def favorite_book(title):
+    """Prints a message indicating a favorite book."""
     print(f'One of my favorite books is {title.title()}')
 
 favorite_book(title='the game of thrones')
@@ -25,6 +27,7 @@ favorite_book(title='the game of thrones')
 # function a second time using keyword arguments.
 print('\n### EXERCISE 8-3 ###')
 def make_shirt(size, message):
+    """Summarizes the T-shirt size and message."""
     print(f'Making a {size.title()} T-Shirt with "{message}" printed on it.')
 
 make_shirt('medium', 'Dunder Mifflin')
@@ -36,6 +39,7 @@ make_shirt(message='SCHRUTE FARMS - Bed & Breakfast', size='large')
 # different message.
 print('\n### EXERCISE 8-4 ###')
 def make_shirt(size='large', message='I love Python'):
+    """Summarizes the T-shirt size and message, with default values."""
     print(f'Making a {size.upper()} T-Shirt with "{message}" printed on it.')
 
 make_shirt()
@@ -49,6 +53,7 @@ make_shirt(size='small', message='just play the right notes')
 # default country.
 print('\n### EXERCISE 8-5 ###')
 def describe_city(city, country='brazil'):
+    """Describes the city and its country, with a default country."""
     print(f'{city.title()} is in {country.title()}.')
 
 describe_city('guarulhos')
@@ -63,6 +68,7 @@ describe_city('buenos aires', 'argentina')
 # values that are returned.
 print('\n### EXERCISE 8-6 ###')
 def city_country(city, country):
+    """Returns a formatted string of a city and its country."""
     return f'{city.title()}, {country.title()}'
 
 print(city_country(city='são paulo', country='brasil'))
@@ -81,6 +87,7 @@ print(city_country(city='salvador', country='brasil'))
 # least one new function call that includes the number of songs on an album.
 print('\n### EXERCISE 8-7 ###')
 def make_album(artist_name, album_title, number_of_songs=None):
+    """Builds a dictionary describing a music album."""
     music_album = {
         'artist': artist_name,
         'album': album_title
@@ -131,6 +138,7 @@ while True:
 # the list to a function called show_messages(), which prints each text message.
 print('\n### EXERCISE 8-9 ###')
 def show_messages(messages):
+    """Prints each message in a list."""
     for message in messages:
         print(message)
 
@@ -148,10 +156,13 @@ show_messages(messages)
 # moved correctly.
 print('\n### EXERCISE 8-10 ###')
 def show_messages(messages):
+    """Prints each message in a list."""
     for message in messages:
         print(message)
 
+
 def send_messages(messages, sent_messages):
+    """Prints each message and moves it to a new list."""
     show_messages(messages)
     while messages:
         current_message = messages.pop()
@@ -174,10 +185,13 @@ print(f'\nsent_messages: {sent_messages}')
 # retained its messages.
 print('\n### EXERCISE 8-11 ###')
 def show_messages(messages):
+    """Prints each message in a list."""
     for message in messages:
         print(message)
 
+
 def send_messages(messages, sent_messages):
+    """Prints each message and moves it to a new list."""
     show_messages(messages)
     while messages:
         current_message = messages.pop()
