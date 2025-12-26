@@ -6,7 +6,7 @@
 # Make an instance called restaurant from your class. Print the two attributes
 # individually, and then call both methods.
 class Restaurant:
-    """A simple representation of a model a restaurant."""
+    """A simple representation of a restaurant model."""
 
     def __init__(self, restaurant_name, cuisine_type):
         """Initialize restaurant_name and cuisine_type attributes.""" 

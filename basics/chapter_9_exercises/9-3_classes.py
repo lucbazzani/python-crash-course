@@ -6,7 +6,7 @@
 # Create several instances representing different users, and call both
 # methods for each user.
 class User:
-    """A simple representation of a model an user."""
+    """A simple representation of an user model."""
 
     def __init__(self, first_name, last_name, id, email, password):
         """Initialize first_name and last_name attributes.""" 

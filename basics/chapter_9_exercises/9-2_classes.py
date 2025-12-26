@@ -2,7 +2,7 @@
 # three different instances from the class, and call describe_restaurant() for
 # each instance.
 class Restaurant:
-    """A simple representation of a model a restaurant."""
+    """A simple representation of a restaurant model."""
 
     def __init__(self, restaurant_name, cuisine_type):
         """Initialize restaurant_name and cuisine_type attributes.""" 
