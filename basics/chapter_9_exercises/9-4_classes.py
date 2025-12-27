@@ -35,7 +35,8 @@ class Restaurant:
         self.number_served += customers_served
 
     def get_number_served(self):
-        return f'The {restaurant.restaurant_name}\'s restaurant had been served {restaurant.number_served} people.'
+        """Return a string summarizing the number of customers served."""
+        return f'The {self.restaurant_name}\'s restaurant had been served {self.number_served} people.'
 
 
 restaurant = Restaurant('Bazzani', 'Brazilian food')
