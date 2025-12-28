@@ -7,7 +7,7 @@
 # storing the lines in a list and then looping over each line.
 from pathlib import Path 
  
-path = Path('basics/chapter_10_exercises/learning_python.txt') 
+path = Path('basics/chapter_10_exercises/text_files/learning_python.txt') 
 contents = path.read_text().strip()
 print(contents)
 
