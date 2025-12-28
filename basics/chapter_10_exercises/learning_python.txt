@@ -1,0 +1,10 @@
+In Python you can store data in lists and tuples.
+In Python you can use loops to automate repetitive tasks.
+In Python you can make decisions using if-statements.
+In Python you can define functions to reuse your code.
+In Python you can work with dictionaries to map keys to values.
+In Python you can handle errors gracefully using try-except blocks.
+In Python you can model real-world objects using classes.
+In Python you can read and write text files easily.
+In Python you can import modules to expand your capabilities.
+In Python you can write clean and readable code using indentation.
