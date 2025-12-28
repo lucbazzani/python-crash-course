@@ -27,10 +27,10 @@ def count_word_occurrences(path, word):
         print(f"The word '{word.strip()}' occurs {occurrences} times in the file '{path}'.")
  
 filenames = [
-        'basics/chapter_10_exercises/text_files/brazilian_tales.txt', 
-        'basics/chapter_10_exercises/text_files/don_quixote.txt', 
-        'basics/chapter_10_exercises/text_files/metamorphosis.txt'
-        ]
+    'basics/chapter_10_exercises/text_files/brazilian_tales.txt', 
+    'basics/chapter_10_exercises/text_files/don_quixote.txt', 
+    'basics/chapter_10_exercises/text_files/metamorphosis.txt'
+]
 
 for filename in filenames: 
     path = Path(filename) 

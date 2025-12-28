@@ -9,7 +9,7 @@
 # each modified line to the screen.
 from pathlib import Path 
  
-path = Path('basics/chapter_10_exercises/learning_python.txt') 
+path = Path('basics/chapter_10_exercises/text_files/learning_python.txt') 
 contents = path.read_text().strip()
 lines = contents.splitlines() 
 for line in lines: 
