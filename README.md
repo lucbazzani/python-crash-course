@@ -33,13 +33,10 @@ The repository is organized by chapter, following the structure of the book.
 
 ## 🛠️ Technologies and Tools Used
 
-* **Python:** 3.14.2
+* **Python:** 3.13.11
 * **Visual Studio Code**
 * **Git**
 * **Pytest:** 9.0.2
+* **Pygame:** 2.6.1
 
 ---
-
-### Prerequisites
-
-You just need Python installed on your system.
