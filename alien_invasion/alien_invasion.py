@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
@@ -24,6 +25,9 @@ class AlienInvasion:
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
 
+        # after the screen has been created, we make an instance of ship.
+        self.ship = Ship(self)
+
         # Set the background color.
         self.bg_color = (0, 25, 50)
 
@@ -36,7 +40,6 @@ class AlienInvasion:
             # taken place since the last time this function was called. 
             # Any keyboard or mouse event will cause this for loop to run
             for event in pygame.event.get():
-
                 # when the player clicks the game window’s close button
                 if event.type == pygame.QUIT:
                     sys.exit()
@@ -44,6 +47,9 @@ class AlienInvasion:
             # fill the screen with the background color during each pass 
             # through the loop.
             self.screen.fill(self.settings.bg_color)
+
+            # After filling the background, we draw the ship on the screen
+            self.ship.blitme()
 
             # Make the most recently drawn screen visible.
             pygame.display.flip()
