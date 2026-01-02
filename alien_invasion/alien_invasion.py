@@ -34,29 +34,38 @@ class AlienInvasion:
     def run_game(self):
         """Start the main loop for the game."""
 
-        while True:
-            # Watch for keyboard and mouse events.            
-            # pygame.event.get() function returns a list of events that have 
-            # taken place since the last time this function was called. 
-            # Any keyboard or mouse event will cause this for loop to run
-            for event in pygame.event.get():
-                # when the player clicks the game window’s close button
-                if event.type == pygame.QUIT:
-                    sys.exit()
-
-            # fill the screen with the background color during each pass 
-            # through the loop.
-            self.screen.fill(self.settings.bg_color)
-
-            # After filling the background, we draw the ship on the screen
-            self.ship.blitme()
-
-            # Make the most recently drawn screen visible.
-            pygame.display.flip()
+        while True:            
+            self._check_events()
+            self._update_screen()
 
             # The tick() method takes the value of 60 in the argument so Pygame 
             # will do its best to make the loop run exactly 60 times per second.
             self.clock.tick(self.settings.frame_rate)
+    
+    def _check_events(self):
+        """Respond to keypresses and mouse events."""
+
+        # pygame.event.get() function returns a list of events that have 
+        # taken place since the last time this function was called.
+        # Watch for keyboard and mouse events.             
+        # Any keyboard or mouse event will cause this for loop to run
+        for event in pygame.event.get():
+            # when the player clicks the game window’s close button
+            if event.type == pygame.QUIT:
+                sys.exit()
+    
+    def _update_screen(self):
+        """Update images on the screen, and flip to the new screen."""
+
+        # fill the screen with the background color during each pass 
+        # through the loop.
+        self.screen.fill(self.settings.bg_color)
+
+        # After filling the background, we draw the ship on the screen
+        self.ship.blitme()
+
+        # Make the most recently drawn screen visible.
+        pygame.display.flip()
 
 
 # only runs if the file is called directly
