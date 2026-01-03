@@ -7,13 +7,11 @@ class Keyboard:
         """Initialize the keyboard."""
         pass
 
-    def is_quit_event(self, event):
+    def is_quit_key(self, event):
         """
-        Did the player click the game window’s close button or 
-        press the ESC key?
+        Did the player press the ESC or Q key?
         """
-        return event.type == pygame.QUIT \
-            or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE)
+        return event.key == pygame.K_ESCAPE or event.key == pygame.K_q
     
     def is_right_key(self, event):
         """ Is the event related to the right arrow key or the D key? """

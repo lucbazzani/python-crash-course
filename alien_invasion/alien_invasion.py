@@ -55,26 +55,40 @@ class AlienInvasion:
         # Watch for keyboard and mouse events.             
         # Any keyboard or mouse event will cause this for loop to run
         for event in pygame.event.get():
-            # when the player clicks the game window’s close button or 
-            # press the ESC key
-            if self.keyboard.is_quit_event(event):
+            # when the player clicks the game window’s close button
+            if event.type == pygame.QUIT:
                 sys.exit()
 
             elif event.type == pygame.KEYDOWN:
-                if self.keyboard.is_right_key(event):
-                    # Move the ship to the right.
-                    self.ship.move_to_right()
-                elif self.keyboard.is_left_key(event):
-                    # Move the ship to the left.
-                    self.ship.move_to_left()
+                self._check_keydown_events(event)                
 
             elif event.type == pygame.KEYUP:
-                if self.keyboard.is_right_key(event):
-                    # Stop moving the ship to the right.
-                    self.ship.stop_moving_right()
-                elif self.keyboard.is_left_key(event):
-                    # Stop moving the ship to the left.
-                    self.ship.stop_moving_left()
+                self._check_keyup_events(event)                
+    
+    def _check_keydown_events(self, event):
+        """Respond to keypresses."""
+
+        if self.keyboard.is_right_key(event):
+            # Move the ship to the right.
+            self.ship.move_to_right()
+
+        elif self.keyboard.is_left_key(event):
+            # Move the ship to the left.
+            self.ship.move_to_left()
+
+        elif self.keyboard.is_quit_key(event):
+            sys.exit()
+            
+    def _check_keyup_events(self, event):
+        """Respond to key releases."""
+        
+        if self.keyboard.is_right_key(event):
+            # Stop moving the ship to the right.
+            self.ship.stop_moving_right()
+
+        elif self.keyboard.is_left_key(event):
+            # Stop moving the ship to the left.
+            self.ship.stop_moving_left()
     
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
