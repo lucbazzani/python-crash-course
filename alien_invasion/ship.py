@@ -31,6 +31,31 @@ class Ship:
         # of the screen
         self.rect.midbottom = self.screen_rect.midbottom
 
+        # Movement flag: start with a ship that's not moving
+        self.moving_right = False
+        self.moving_left = False
+
+    def move_to_right(self):
+        self.moving_right = True
+    
+    def move_to_left(self):
+        self.moving_left = True
+    
+    def stop_moving_right(self):
+        self.moving_right = False
+    
+    def stop_moving_left(self):
+        self.moving_left = False
+
+    def update_movement(self):
+        """Update the ship's position based on the movement flags."""
+
+        if self.moving_right:
+            self.rect.x += 1  
+        if self.moving_left:
+            self.rect.x -= 1  
+
+
     def blitme(self):
         """Draw the ship at its current location."""
         
