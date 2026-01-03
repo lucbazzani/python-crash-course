@@ -13,6 +13,8 @@ class Ship:
         # in all the methods in this class.
         self.screen = game.screen
 
+        self.settings = game.settings
+
         # accessing the screen’s rect attribute using the get_rect() method and 
         # assigning it to self.screen_rect allows us to place the ship in
         # the correct location on the screen.
@@ -31,9 +33,31 @@ class Ship:
         # of the screen
         self.rect.midbottom = self.screen_rect.midbottom
 
+        # Store a float for the ship's exact horizontal position.
+        self.x = float(self.rect.x)
+
         # Movement flag: start with a ship that's not moving
         self.moving_right = False
         self.moving_left = False
+
+    def update_movement(self):
+        """Update the ship's position based on the movement flags."""
+
+        # Update the ship's x value, not the rect.
+        if self.moving_right and self.rect.right < self.screen_rect.right:
+            self.x += self.settings.ship_speed  
+        if self.moving_left and self.rect.left > 0:
+            self.x -= self.settings.ship_speed
+        
+        # Update rect object from self.x. 
+        # Only the integer portion of self.x will be assigned to self.rect.x
+        self.rect.x = self.x
+
+    def blitme(self):
+        """Draw the ship at its current location."""
+        
+        # draws the image to the screen at the position specified by self.rect
+        self.screen.blit(self.image, self.rect)
 
     def move_to_right(self):
         self.moving_right = True
@@ -46,18 +70,3 @@ class Ship:
     
     def stop_moving_left(self):
         self.moving_left = False
-
-    def update_movement(self):
-        """Update the ship's position based on the movement flags."""
-
-        if self.moving_right:
-            self.rect.x += 1  
-        if self.moving_left:
-            self.rect.x -= 1  
-
-
-    def blitme(self):
-        """Draw the ship at its current location."""
-        
-        # draws the image to the screen at the position specified by self.rect
-        self.screen.blit(self.image, self.rect)
