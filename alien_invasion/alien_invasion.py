@@ -46,7 +46,7 @@ class AlienInvasion:
 
         while True:            
             self._check_events()
-            self.ship.update_movement()
+            self.ship.update_position()
             self._update_screen()
 
             # The tick() method takes the value of 60 in the argument so Pygame 
@@ -75,12 +75,20 @@ class AlienInvasion:
         """Respond to keypresses."""
 
         if self.keyboard.is_right_key(event):
-            # Move the ship to the right.
-            self.ship.move_to_right()
+            # Move the ship to right.
+            self.ship.move_right()
 
         elif self.keyboard.is_left_key(event):
-            # Move the ship to the left.
-            self.ship.move_to_left()
+            # Move the ship to left.
+            self.ship.move_left()
+        
+        elif self.keyboard.is_up_key(event):
+            # Move the ship up.
+            self.ship.move_up()
+       
+        elif self.keyboard.is_down_key(event):
+            # Move the ship down.
+            self.ship.move_down()
 
         elif self.keyboard.is_quit_key(event):
             sys.exit()
@@ -95,6 +103,14 @@ class AlienInvasion:
         elif self.keyboard.is_left_key(event):
             # Stop moving the ship to the left.
             self.ship.stop_moving_left()
+
+        elif self.keyboard.is_up_key(event):
+            # Stop moving the ship up.
+            self.ship.stop_moving_up()
+       
+        elif self.keyboard.is_down_key(event):
+            # Stop moving the ship down.
+            self.ship.stop_moving_down()
     
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""

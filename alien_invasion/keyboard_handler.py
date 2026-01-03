@@ -20,3 +20,11 @@ class Keyboard:
     def is_left_key(self, event):
         """ Is the event related to the left arrow key or the A key? """
         return event.key == pygame.K_LEFT or event.key == pygame.K_a
+    
+    def is_up_key(self, event):
+        """ Is the event related to the up arrow key or the W key? """
+        return event.key == pygame.K_UP or event.key == pygame.K_w
+    
+    def is_down_key(self, event):
+        """ Is the event related to the down arrow key or the S key? """
+        return event.key == pygame.K_DOWN or event.key == pygame.K_s

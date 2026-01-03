@@ -35,12 +35,15 @@ class Ship:
 
         # Store a float for the ship's exact horizontal position.
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
         # Movement flag: start with a ship that's not moving
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
 
-    def update_movement(self):
+    def update_position(self):
         """Update the ship's position based on the movement flags."""
 
         # Update the ship's x value, not the rect.
@@ -48,10 +51,15 @@ class Ship:
             self.x += self.settings.ship_speed  
         if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
+        if self.moving_up and self.rect.top > 0:
+            self.y -= self.settings.ship_speed
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.y += self.settings.ship_speed
         
         # Update rect object from self.x. 
         # Only the integer portion of self.x will be assigned to self.rect.x
         self.rect.x = self.x
+        self.rect.y = self.y
 
     def blitme(self):
         """Draw the ship at its current location."""
@@ -59,14 +67,26 @@ class Ship:
         # draws the image to the screen at the position specified by self.rect
         self.screen.blit(self.image, self.rect)
 
-    def move_to_right(self):
+    def move_right(self):
         self.moving_right = True
     
-    def move_to_left(self):
+    def move_left(self):
         self.moving_left = True
     
+    def move_up(self):
+        self.moving_up = True
+    
+    def move_down(self):
+        self.moving_down = True
+
     def stop_moving_right(self):
         self.moving_right = False
     
     def stop_moving_left(self):
         self.moving_left = False
+        
+    def stop_moving_up(self):
+        self.moving_up = False
+    
+    def stop_moving_down(self):
+        self.moving_down = False
