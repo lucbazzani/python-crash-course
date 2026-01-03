@@ -28,3 +28,7 @@ class Keyboard:
     def is_down_key(self, event):
         """ Is the event related to the down arrow key or the S key? """
         return event.key == pygame.K_DOWN or event.key == pygame.K_s
+    
+    def is_spacebar_key(self, event):
+        """ Is the event related to the Spacebar key? """
+        return event.key == pygame.K_SPACE

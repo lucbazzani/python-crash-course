@@ -5,6 +5,7 @@ import pygame
 from keyboard_handler import Keyboard
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
@@ -37,6 +38,7 @@ class AlienInvasion:
 
         # after the screen has been created, we make an instance of ship.
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
 
         # Set the background color.
         self.bg_color = (0, 25, 50)
@@ -46,7 +48,9 @@ class AlienInvasion:
 
         while True:            
             self._check_events()
-            self.ship.update_position()
+            self.ship.update()
+            # the group automatically calls update_position() for each sprite in the group.
+            self.bullets.update()
             self._update_screen()
 
             # The tick() method takes the value of 60 in the argument so Pygame 
@@ -90,6 +94,10 @@ class AlienInvasion:
             # Move the ship down.
             self.ship.move_down()
 
+        elif self.keyboard.is_spacebar_key(event):
+            # Fire bullet
+            self._fire_bullet()
+
         elif self.keyboard.is_quit_key(event):
             sys.exit()
             
@@ -111,6 +119,14 @@ class AlienInvasion:
         elif self.keyboard.is_down_key(event):
             # Stop moving the ship down.
             self.ship.stop_moving_down()
+
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+        
+        new_bullet = Bullet(self)
+        # The add() method is similar to append(), 
+        # but it’s written specifically for Pygame groups.
+        self.bullets.add(new_bullet)
     
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
@@ -118,6 +134,9 @@ class AlienInvasion:
         # fill the screen with the background color during each pass 
         # through the loop.
         self.screen.fill(self.settings.bg_color)
+
+        for bullet in self.bullets.sprites():
+            bullet.draw()
 
         # After filling the background, we draw the ship on the screen
         self.ship.blitme()
