@@ -51,6 +51,14 @@ class AlienInvasion:
             self.ship.update()
             # the group automatically calls update_position() for each sprite in the group.
             self.bullets.update()
+
+            # Get rid of bullets that have disappeared
+            # We can’t remove items from a list or group within a for loop, 
+            # so we have to loop over a copy of the group. 
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+
             self._update_screen()
 
             # The tick() method takes the value of 60 in the argument so Pygame 
