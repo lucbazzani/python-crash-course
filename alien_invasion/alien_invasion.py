@@ -6,6 +6,7 @@ from keyboard_handler import Keyboard
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
@@ -39,6 +40,9 @@ class AlienInvasion:
         # after the screen has been created, we make an instance of ship.
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+
+        self._create_fleet()
 
         # Set the background color.
         self.bg_color = (0, 25, 50)
@@ -140,6 +144,11 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
+    def _create_fleet(self):
+        """Create the fleet of aliens."""
+
+        alien = Alien(self)
+        self.aliens.add(alien)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
@@ -153,6 +162,10 @@ class AlienInvasion:
 
         # After filling the background, we draw the ship on the screen
         self.ship.blitme()
+
+        # When draw() is called on a group, Pygame draws eachelement in the 
+        # group at the position defined by its rect attribute.
+        self.aliens.draw(self.screen)
 
         # Make the most recently drawn screen visible.
         pygame.display.flip()

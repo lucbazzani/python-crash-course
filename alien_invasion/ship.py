@@ -24,7 +24,7 @@ class Ship:
 
         # Load the ship image and get its rect.
         # pygame.image.load() returns a surface representing the ship.
-        self.image = pygame.image.load('alien_invasion/images/ship.bmp')
+        self.image = pygame.image.load('alien_invasion/images/ship.png')
         
         # access the ship surface’s rect attribute so we can later use it 
         # to place the ship
