@@ -159,7 +159,7 @@ class AlienInvasion:
     def _create_constellation(self):
         """Create a random constellation of stars."""
         
-        scale = uniform(0.4, 1.0)
+        scale = uniform(0.4, 0.9)
         star = Star(self, scale)
         star_width, star_height = star.rect.size
 
@@ -182,7 +182,7 @@ class AlienInvasion:
         """Create a star and place it in the constellation."""
         
         # Create a star with a random size.
-        scale = uniform(0.3, 1.0)
+        scale = uniform(0.3, 0.9)
         new_star = Star(self, scale=scale)        
         new_star.x = x_position
         new_star.rect.x = x_position
