@@ -1,9 +1,12 @@
 import sys
 
+from random import random, uniform
+
 import pygame
 
 from keyboard_handler import Keyboard
 from settings import Settings
+from star import Star
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -38,10 +41,12 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
 
         # after the screen has been created, we make an instance of ship.
+        self.stars = pygame.sprite.Group()
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
 
+        self._create_constellation()
         self._create_fleet()
 
         # Set the background color.
@@ -144,6 +149,39 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
+    def _create_constellation(self):
+        """Create a random constellation of stars."""
+        
+        scale = uniform(0.4, 1.0)
+        star = Star(self, scale)
+        star_width, star_height = star.rect.size
+
+        current_x, current_y = star_width, star_height
+        
+        while current_y < (self.settings.screen_height - 2 * star_height):
+            while current_x < (self.settings.screen_width - 2 * star_width):
+                # Randomly decide whether to place a star at this location.
+                if random() < 0.1: # 10% chance to create a star
+                    self._create_star(current_x, current_y)
+                
+                # Move to the next potential star position in the row.
+                current_x += 2 * star_width
+
+            # Reset for the next row.
+            current_x = star_width
+            current_y += 2 * star_height
+
+    def _create_star(self, x_position, y_position):
+        """Create a star and place it in the constellation."""
+        
+        # Create a star with a random size.
+        scale = uniform(0.3, 1.0)
+        new_star = Star(self, scale=scale)        
+        new_star.x = x_position
+        new_star.rect.x = x_position
+        new_star.rect.y = y_position
+        self.stars.add(new_star)
+
     def _create_fleet(self):
         """Create the fleet of aliens."""
 
@@ -189,15 +227,16 @@ class AlienInvasion:
         # through the loop.
         self.screen.fill(self.settings.bg_color)
 
+
+        # After filling the background, we draw the ship, aliens, stars and
+        # bullets on screen
+        # When draw() is called on a group, Pygame draws each element in the 
+        # group at the position defined by its rect attribute.
+        self.stars.draw(self.screen)
+        self.ship.blitme()
+        self.aliens.draw(self.screen)
         for bullet in self.bullets.sprites():
             bullet.draw()
-
-        # After filling the background, we draw the ship on the screen
-        self.ship.blitme()
-
-        # When draw() is called on a group, Pygame draws eachelement in the 
-        # group at the position defined by its rect attribute.
-        self.aliens.draw(self.screen)
 
         # Make the most recently drawn screen visible.
         pygame.display.flip()
