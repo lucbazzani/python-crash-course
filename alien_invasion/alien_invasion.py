@@ -59,6 +59,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
 
             # The tick() method takes the value of 60 in the argument so Pygame 
@@ -148,6 +149,12 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+    
+    def _update_aliens(self):
+        """Check if the fleet is at an edge, then update positions."""
+
+        self._check_fleet_edges()
+        self.aliens.update()
 
     def _create_constellation(self):
         """Create a random constellation of stars."""
@@ -219,6 +226,22 @@ class AlienInvasion:
         new_alien.rect.x = x_position
         new_alien.rect.y = y_position
         self.aliens.add(new_alien)
+
+    def _check_fleet_edges(self):
+        """Respond appropriately if any aliens have reached an edge."""
+        
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+    
+    def _change_fleet_direction(self):
+        """Drop the entire fleet and change the fleet's direction."""
+        
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        
+        self.settings.fleet_direction *= -1
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
