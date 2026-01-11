@@ -12,6 +12,7 @@ from star import Star
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from game_over import GameOver
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
@@ -50,6 +51,7 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
+        self.game_over_text = GameOver(self)
 
         self._create_constellation()
         self._create_fleet()
@@ -57,15 +59,19 @@ class AlienInvasion:
         # Set the background color.
         self.bg_color = (0, 25, 50)
 
+        # Start Alien Invasion in an active state. 
+        self.game_active = True
+
     def run_game(self):
         """Start the main loop for the game."""
 
-        while True:
-            print('WHILE')            
+        while True:           
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
+            if self.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+            
             self._update_screen()
 
             # The tick() method takes the value of 60 in the argument so Pygame 
@@ -232,19 +238,23 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """Respond to the ship being hit by an alien."""
-        # Decrement ships_left
-        self.stats.ships_left -= 1
+        
+        if self.stats.ships_left > 0:            
+            # Decrement ships_left
+            self.stats.ships_left -= 1
 
-        # Get rid of any remaining bullets and aliens.
-        self.bullets.empty()
-        self.aliens.empty()
+            # Get rid of any remaining bullets and aliens.
+            self.bullets.empty()
+            self.aliens.empty()
 
-        # Create a new fleet and center the ship
-        self._create_fleet()
-        self.ship.center_ship()
+            # Create a new fleet and center the ship
+            self._create_fleet()
+            self.ship.center_ship()
 
-        # Pause.
-        sleep(0.5)
+            # Pause.
+            sleep(0.5)
+        else:
+            self.game_active = False
 
     def _check_fleet_edges(self):
         """Respond appropriately if any aliens have reached an edge."""
@@ -313,6 +323,9 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw()
 
+        if not self.game_active:
+            self.game_over_text.blitme()
+            self.game_over_text.update()
         # Make the most recently drawn screen visible.
         pygame.display.flip()
 
