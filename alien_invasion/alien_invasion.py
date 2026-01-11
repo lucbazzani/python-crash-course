@@ -154,45 +154,17 @@ class AlienInvasion:
         #  If so, get rid of the bullet and the alien.
         collisions = pygame.sprite.groupcollide(
                 self.bullets, self.aliens, True, True)
+        
+        if not self.aliens:
+            # Destroy existing bullets and create new fleet.
+            self.bullets.empty()
+            self._create_fleet()        
     
     def _update_aliens(self):
         """Check if the fleet is at an edge, then update positions."""
 
         self._check_fleet_edges()
         self.aliens.update()
-
-    def _create_constellation(self):
-        """Create a random constellation of stars."""
-        
-        scale = uniform(0.4, 0.9)
-        star = Star(self, scale)
-        star_width, star_height = star.rect.size
-
-        current_x, current_y = star_width, star_height
-        
-        while current_y < (self.settings.screen_height - 2 * star_height):
-            while current_x < (self.settings.screen_width - 2 * star_width):
-                # Randomly decide whether to place a star at this location.
-                if random() < 0.1: # 10% chance to create a star
-                    self._create_star(current_x, current_y)
-                
-                # Move to the next potential star position in the row.
-                current_x += 2 * star_width
-
-            # Reset for the next row.
-            current_x = star_width
-            current_y += 2 * star_height
-
-    def _create_star(self, x_position, y_position):
-        """Create a star and place it in the constellation."""
-        
-        # Create a star with a random size.
-        scale = uniform(0.3, 0.9)
-        new_star = Star(self, scale=scale)        
-        new_star.x = x_position
-        new_star.rect.x = x_position
-        new_star.rect.y = y_position
-        self.stars.add(new_star)
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
@@ -247,6 +219,39 @@ class AlienInvasion:
             alien.rect.y += self.settings.fleet_drop_speed
         
         self.settings.fleet_direction *= -1
+
+    def _create_constellation(self):
+        """Create a random constellation of stars."""
+        
+        scale = uniform(0.4, 0.9)
+        star = Star(self, scale)
+        star_width, star_height = star.rect.size
+
+        current_x, current_y = star_width, star_height
+        
+        while current_y < (self.settings.screen_height - 2 * star_height):
+            while current_x < (self.settings.screen_width - 2 * star_width):
+                # Randomly decide whether to place a star at this location.
+                if random() < 0.1: # 10% chance to create a star
+                    self._create_star(current_x, current_y)
+                
+                # Move to the next potential star position in the row.
+                current_x += 2 * star_width
+
+            # Reset for the next row.
+            current_x = star_width
+            current_y += 2 * star_height
+
+    def _create_star(self, x_position, y_position):
+        """Create a star and place it in the constellation."""
+        
+        # Create a star with a random size.
+        scale = uniform(0.3, 0.9)
+        new_star = Star(self, scale=scale)        
+        new_star.x = x_position
+        new_star.rect.x = x_position
+        new_star.rect.y = y_position
+        self.stars.add(new_star)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
