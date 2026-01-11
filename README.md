@@ -25,9 +25,9 @@ The repository is organized by chapter, following the structure of the book.
 | Section | Description | Status |
 | :--- | :--- | :--- |
 | **Part I: Basics** | Chapters 1 through 11: Fundamentals, Lists, Dictionaries, Functions, Classes, Files, and Testing. | **Done** |
-| **Project 1: Alien Invasion** | Chapters 12 through 14: Creating a 2D side-scrolling game using Pygame. | **In Progress** |
+| **Project 1: Alien Invasion** | Chapters 12 through 14: Creating a 2D side-scrolling game using Pygame. | **In Progress (Chapters 12 and 13 finished)** |
 | **Project 2: Data Visualization** | Chapters 15 through 17: Generating data visualizations using Matplotlib and Plotly. | To Do |
-| **Project 3: Web Application** | Chapters 18 through 20: Building a simple web app using Django. | To Do |
+| **Project 3: Web Application** | Chapters 18 through 20: Building a simple web app using Django. | **In Progress** |
 
 ---
 
