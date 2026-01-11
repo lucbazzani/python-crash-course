@@ -12,6 +12,7 @@ from star import Star
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from life import Life
 from game_over import GameOver
 
 class AlienInvasion:
@@ -51,10 +52,12 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
+        self.lifes = pygame.sprite.Group()
         self.game_over_text = GameOver(self)
 
         self._create_constellation()
         self._create_fleet()
+        self._create_lifes_remaining()
 
         # Set the background color.
         self.bg_color = (0, 25, 50)
@@ -71,6 +74,7 @@ class AlienInvasion:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
+                # self._update_life_remaining()
             
             self._update_screen()
 
@@ -198,6 +202,28 @@ class AlienInvasion:
         # Look for aliens hitting the bottom of the screen
         self._check_aliens_bottom()
 
+    def _create_lifes_remaining(self):
+
+        life = Life(self)
+        life_width, life_height = life.rect.size
+
+        screen_width = self.settings.screen_width
+        initial_lifes = self.settings.ship_limit
+        current_x = screen_width - ((initial_lifes + 3) * life.rect.width)
+        current_y = life_height
+        
+        while len(self.lifes) < initial_lifes:
+            self._create_life(current_x, current_y)
+            current_x += life_width + 5
+
+    def _create_life(self, x_position, y_position):
+        """Create an life and place it on the screen."""
+        new_life = Life(self)
+        new_life.x = x_position
+        new_life.rect.x = x_position
+        new_life.rect.y = y_position
+        self.lifes.add(new_life)
+
     def _create_fleet(self):
         """Create the fleet of aliens."""
 
@@ -240,8 +266,10 @@ class AlienInvasion:
         """Respond to the ship being hit by an alien."""
         
         if self.stats.ships_left > 0:            
-            # Decrement ships_left
+            # Decrement ships_left and remove a life sprite.
             self.stats.ships_left -= 1
+            if self.lifes:
+                self.lifes.sprites()[-1].kill()
 
             # Get rid of any remaining bullets and aliens.
             self.bullets.empty()
@@ -319,6 +347,7 @@ class AlienInvasion:
         # group at the position defined by its rect attribute.
         self.stars.draw(self.screen)
         self.ship.blitme()
+        self.lifes.draw(self.screen)
         self.aliens.draw(self.screen)
         for bullet in self.bullets.sprites():
             bullet.draw()
