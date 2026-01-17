@@ -1,0 +1,13 @@
+{% comment %}
+indicated by braces and percent signs ({% %}), a template tag generates 
+information to be displayed on a page
+{% endcomment %}
+
+<p> 
+    <!-- The template tag {% url 'learning_logs:index' %} shown here generates a 
+        URL matching the URL pattern defined in learning_logs/urls.py with the 
+        name 'index'-->
+    <a href="{% url 'learning_logs:index' %}">Learning Log</a> 
+</p> 
+ 
+{% block content %}{% endblock content %}
