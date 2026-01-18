@@ -1,0 +1,27 @@
+{% extends 'learning_logs/base.xhtml' %} 
+ 
+{% block content %} 
+ 
+    <p>Topic: {{ topic.text }}</p> 
+ 
+    <p>Entries:</p> 
+    <ul>
+        {% for entry in entries %} 
+            <li>
+                <!-- a vertical line (|) represents a template filter — a 
+                    function that modifies the value in a template variable 
+                    during the rendering process -->
+                <!-- The filter date:'M d, Y H:i' displays timestamps in the 
+                    format January 1, 2022 23:00 -->
+                <p>{{ entry.created_at|date:'M d, Y H:i' }}</p> 
+
+                <!-- The filter linebreaks - ensures that long text entries 
+                    include line breaks in a format understood by browsers -->
+                <p>{{ entry.text|linebreaks }}</p> 
+            </li>
+        {% empty %} 
+            <li>There are no entries for this topic yet.</li> 
+        {% endfor %} 
+    </ul> 
+ 
+{% endblock content %}

@@ -6,7 +6,13 @@
 
 <ul>
     {% for topic in topics %}
-        <li>{{ topic.text }}</li>
+        <li>
+            <!-- We use the URL template tag to generate the proper link, based 
+                on the URL pattern in learning_logs with the name 'topic'. This 
+                URL pattern requires a topic_id argument, so we add the 
+                attribute topic.id to the URL template tag. -->
+            <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic.text }}</a>
+        </li>
     {% empty %}
         <li>No topics have been added yet.</li>
     {% endfor %}

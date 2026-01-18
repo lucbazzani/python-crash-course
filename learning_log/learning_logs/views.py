@@ -19,3 +19,12 @@ def topics(request):
      # to send to the template
      context = {'topics': topics}
      return render(request, 'learning_logs/topics.xhtml', context)
+
+def topic(request, topic_id): 
+    """Show a single topic and all its entries."""
+
+    topic = Topic.objects.get(id=topic_id)
+    # The minus sign in front of created_at sorts the results in reverse order
+    entries = topic.entry_set.order_by('-created_at')
+    context = {'topic': topic, 'entries': entries}
+    return render(request, 'learning_logs/topic.xhtml', context)
