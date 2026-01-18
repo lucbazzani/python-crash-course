@@ -16,4 +16,7 @@ urlpatterns = [
     # When Django finds a URL that matches this pattern, it calls the view 
     # function topic() with the value assigned to topic_id as an argument
     path('topics/<int:topic_id>/', views.topic, name='topic'),
+
+    # Page for adding a new topic
+    path('new_topic/', views.new_topic, name='new_topic'),
 ]
