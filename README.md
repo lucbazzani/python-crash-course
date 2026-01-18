@@ -38,5 +38,6 @@ The repository is organized by chapter, following the structure of the book.
 * **Git**
 * **Pytest:** 9.0.2
 * **Pygame:** 2.6.1
+* **Django:** 6.0.1
 
 ---
